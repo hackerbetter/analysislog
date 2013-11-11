@@ -1,0 +1,32 @@
+lotserver.log.20130624 report each [hour] avg reponse miils
+hour:00,avg mills:0.106675595
+hour:01,avg mills:0.124507666
+hour:02,avg mills:0.09331376
+hour:03,avg mills:0.08272891
+lotserver.log.20130624 report each [hour] avg reponse miils
+hour:00,avg mills:0.106675595
+hour:01,avg mills:0.124507666
+hour:02,avg mills:0.09331376
+hour:03,avg mills:0.08272891
+hour:04,avg mills:0.08612147
+hour:05,avg mills:0.09326991
+hour:06,avg mills:0.09359036
+hour:07,avg mills:0.13006918
+hour:08,avg mills:0.11428281
+hour:09,avg mills:0.16925472
+hour:10,avg mills:0.13287495
+hour:11,avg mills:0.14698297
+hour:12,avg mills:0.1460104
+hour:13,avg mills:0.124096885
+hour:14,avg mills:0.123345286
+hour:15,avg mills:0.1549922
+hour:16,avg mills:0.14702478
+hour:17,avg mills:0.1617579
+hour:18,avg mills:0.19829153
+hour:19,avg mills:0.115374014
+hour:20,avg mills:0.20134461
+hour:21,avg mills:0.3752284
+hour:22,avg mills:0.20828235
+hour:23,avg mills:0.14012694
+lotserver.log.20130624 report each [day] avg reponse miils
+0.15260234

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.zhengshuli</groupId>
+  <artifactId>analysislog</artifactId>
+  <name>analysislog</name>
+  <version>0.0.1-SNAPSHOT</version>
+  <build>
+    <finalName>analysislog</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>1.4</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <transformers>
+                <transformer>
+                  <mainClass>com.zhengshuli.analysislog.AnalysisLog</mainClass>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <repositories>
+    <repository>
+      <id>ruyicai</id>
+      <name>Ruyicai Repository</name>
+      <url>http://202.43.152.168/nexus/content/repositories/public/</url>
+    </repository>
+    <repository>
+      <id>JBoss Repo</id>
+      <name>JBoss Repo</name>
+      <url>https://repository.jboss.org/nexus/content/repositories/releases</url>
+    </repository>
+    <repository>
+      <id>Apache</id>
+      <name>Apache</name>
+      <url>https://repository.apache.org/content/repositories/releases/</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>ruyicai</id>
+      <name>Ruyicai Repository</name>
+      <url>http://202.43.152.168/nexus/content/repositories/public/</url>
+    </pluginRepository>
+  </pluginRepositories>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.10</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <properties>
+    <aspectj.version>1.6.11</aspectj.version>
+    <slf4j.version>1.6.1</slf4j.version>
+    <spring.version>3.0.5.RELEASE</spring.version>
+    <roo.version>1.1.5.RELEASE</roo.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+</project>
+
