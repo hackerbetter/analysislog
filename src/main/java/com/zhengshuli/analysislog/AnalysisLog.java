@@ -36,33 +36,6 @@ public class AnalysisLog {
 		}
 	}
 
-	private void analysisAvgMillsEachDay(String filePath,PrintStream printer){
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(filePath));
-			String line = "";
-			int lineCount = 0;
-			float totalResponseMills = 0;
-			while (!Strings.isNullOrEmpty(line = reader.readLine())){
-				lineCount++;
-				String[] items = line.split(" ");
-				try{
-					totalResponseMills += Float.valueOf(items[items.length - 2]);
-				}catch(Exception e){
-					lineCount--;
-					continue;
-				}
-			}
-			float avgMills = totalResponseMills / lineCount;
-			printer.println(avgMills);
-		}
-		catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	private void analysisAvgMillsEachHour(File log,PrintStream printer){
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(log.getAbsolutePath()));

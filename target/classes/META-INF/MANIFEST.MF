@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Built-By: nezhazheng
-Build-Jdk: 1.7.0_25
-Implementation-Title: analysislog
-Implementation-Version: 0.0.1-SNAPSHOT
-Implementation-Vendor-Id: com.zhengshuli
-Created-By: Maven Integration for Eclipse
-
