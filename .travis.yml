@@ -1,0 +1,12 @@
+language: java
+jdk:
+  - oraclejdk7
+script:
+   - (mvn clean test)
+# whitelist
+branches:
+  only:
+    - master
+notifications:
+  email:
+    - nezhazheng@gmail.com
