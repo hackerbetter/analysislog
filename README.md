@@ -4,6 +4,8 @@ Nginx Log Analyzer
 
 * complete toLogLine work.
 
+* consider how to test private method.
+
 * analysis log file.
 
 

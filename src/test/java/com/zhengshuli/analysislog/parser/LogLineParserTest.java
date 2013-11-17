@@ -32,11 +32,11 @@ public class LogLineParserTest {
 		LogFormat logFormat = new LogFormat(LogFormatTest.LOTSERVER_LOG_FORMAT);
 		LogLineParser parser = new LogLineParser(logFormat);;
 		String line = FileFixture.loadFirstLine("/normalline.txt");
-		LogLine logLine = parser .parseToLogLine(line, logFormat);
-		assertEquals("125.88.122.103", logLine.getRemoteaddr());
-		assertEquals("-", logLine.getRemoteuser());
-		assertEquals("08/Nov/2013:00:00:01 +0800", logLine.getTimelocal());
+		LogLine logLine = parser .parseToLogLine(line);
+		assertEquals("125.88.122.103", logLine.getRemoteAddr());
+		assertEquals("-", logLine.getRemoteUser());
+		assertEquals("08/Nov/2013:00:00:01 +0800", logLine.getTimeLocal());
 		assertEquals("POST /lotserver/RuyicaiServlet HTTP/1.1", logLine.getRequest());
-		assertEquals("6ddaf4c", logLine.getRequestbody());
+		assertEquals("6ddaf4c", logLine.getRequestBody());
 	}
 }

@@ -1,7 +1,11 @@
 package com.zhengshuli.analysislog.parser;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.apache.commons.beanutils.PropertyUtils;
 
 import com.zhengshuli.analysislog.domain.LogLine;
 
@@ -14,15 +18,26 @@ public class LogLineParser {
 		parsePattern = Pattern.compile(logFormat.getRegex());
 	}
 	
-	public LogLine parseToLogLine(String line, LogFormat logFormat){
+	public LogLine parseToLogLine(String line){
 		Matcher matcher = parsePattern.matcher(line);
 		if (matcher.find()) {
 			LogLine logLine = new LogLine();
-			logLine.setRemoteaddr(matcher.group("remoteaddr"));
-			logLine.setRemoteuser(matcher.group("remoteuser"));
-			logLine.setTimelocal(matcher.group("timelocal"));
-			logLine.setRequest(matcher.group("request"));
-			logLine.setRequestbody(matcher.group("requestbody"));
+			List<String> logElements = logFormat.getLogElements();
+			for(String logElement : logElements){
+			    String value = matcher.group(logElement);
+			    try {
+                    PropertyUtils.setProperty(logLine, logElement, value);
+                }
+                catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+                catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+                catch (NoSuchMethodException e) {
+                    // TODO fix this 
+                }
+			}
 			return logLine;	
 		}
 		return null;

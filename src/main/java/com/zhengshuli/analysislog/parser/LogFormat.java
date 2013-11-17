@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.text.WordUtils;
+
 public class LogFormat {
 	public static final String EMPTY = "-";
 	public static final String LOG_ELE_PREFIX = "$";
@@ -37,7 +39,7 @@ public class LogFormat {
 		Matcher matcher = pattern.matcher(logFormatStr);
 		List<String> logElements = new ArrayList<>();
 		while (matcher.find()) {
-			String logElement = matcher.group(1).replace("_", "");
+			String logElement = toCamel(matcher.group(1));
 			String captureGroup = toCaptureGroup(logElement, 
 					logFormatStr.length() == matcher.end() ? '\0' : logFormatStr.charAt(matcher.end()));
 			regex = regex.replaceFirst("\\" + matcher.group(0), captureGroup);
@@ -47,6 +49,11 @@ public class LogFormat {
 		System.out.println(regex);
 		this.regex = regex;
 	}
+	
+	private String toCamel(String logElement){
+        String test = WordUtils.capitalize(logElement, '_');
+        return test.replace(test.charAt(0), Character.toLowerCase(test.charAt(0))).replaceAll("_", "");
+    }
 
 	private String escape(String regex) {
 		return regex.replace("[", "\\[").replace("]", "\\]");
