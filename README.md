@@ -2,9 +2,7 @@ Nginx Log Analyzer
 -----
 [![Build Status](https://travis-ci.org/nezhazheng/analysislog.png)](https://travis-ci.org/nezhazheng/analysislog)
 
-* complete toLogLine work.
-
-* consider how to test private method.
+* complete toLogLine method.
 
 * analysis log file.
 

@@ -4,6 +4,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 
 import org.junit.Test;
@@ -30,11 +32,17 @@ public class LogFormatTest {
 		assertThat(logFormat.getRegex(), is(expectRegex));
 	}
 	
-//	@Test
-//	public void should_to_capture_group(){
-//		String normalLogEle = "remoteaddr";
-//		assertThat(LogFormat.toCaptureGroup(normalLogEle, ' '), is("(?<remoteaddr>[^\\s]+)"));
-//		assertThat(LogFormat.toCaptureGroup(normalLogEle, ']'), is("(?<remoteaddr>.+)"));
-//		assertThat(LogFormat.toCaptureGroup(normalLogEle, '\"'), is("(?<remoteaddr>[^\"]+)"));
-//	}
+	@Test
+	public void should_to_capture_group() throws NoSuchMethodException, SecurityException, 
+	            IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+		String normalLogEle = "remoteAddr";
+		
+		Method toCaptureGroup = LogFormat.class.getDeclaredMethod("toCaptureGroup", String.class, char.class);
+		toCaptureGroup.setAccessible(true);
+		LogFormat logFormat = new LogFormat(LOTSERVER_LOG_FORMAT);
+		
+		assertThat((String)toCaptureGroup.invoke(logFormat, normalLogEle, ' '), is("(?<remoteAddr>[^\\\\s]+)"));
+		assertThat((String)toCaptureGroup.invoke(logFormat, normalLogEle, ']'), is("(?<remoteAddr>.+)"));
+		assertThat((String)toCaptureGroup.invoke(logFormat, normalLogEle, '\"'), is("(?<remoteAddr>[^\"]+)"));
+	}
 }
