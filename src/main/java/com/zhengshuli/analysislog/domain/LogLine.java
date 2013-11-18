@@ -6,6 +6,13 @@ public class LogLine {
 	private String timeLocal;
 	private String request;
 	private String requestBody;
+	private String requestTime;
+    public String getRequestTime() {
+        return requestTime;
+    }
+    public void setRequestTime(String requestTime) {
+        this.requestTime = requestTime;
+    }
     public String getRemoteAddr() {
         return remoteAddr;
     }
