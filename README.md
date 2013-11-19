@@ -4,6 +4,8 @@ Nginx Log Analyzer
 
 ### TODO
 
+* complete parse、analysis、report architecture.
+
 * figure out how to store the analysis data.
 
 * analysis log file.

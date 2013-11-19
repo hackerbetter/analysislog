@@ -7,7 +7,6 @@ import java.nio.charset.Charset;
 
 import com.google.common.io.Files;
 
-
 public class FileFixture {
 	public static String loadFirstLine(String fileName){
 		String oneLine = null;
