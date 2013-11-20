@@ -10,14 +10,13 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.zhengshuli.analysislog.TestConstants;
+
 public class LogFormatTest {
-	public static final String LOTSERVER_LOG_FORMAT = "$remote_addr - $remote_user [$time_local] \"$request\" "
-			+ "http_status $status $body_bytes_sent \"$http_referer\" \"$http_user_agent\" \"$http_x_forwarded_for\" "
-			+ "upstream_addr $upstream_addr $request_time $request_body";
 	
 	@Test
 	public void should_get_all_log_elements(){
-		LogFormat logFormat = new LogFormat(LOTSERVER_LOG_FORMAT);
+		LogFormat logFormat = new LogFormat(TestConstants.DEFAULT_LOG_FORMAT_STR);
 		List<String> elements = logFormat.getLogElements();
 		assertThat(elements.size(), is(12));
 		assertTrue(elements.contains("remoteAddr"));
@@ -39,7 +38,7 @@ public class LogFormatTest {
 		
 		Method toCaptureGroup = LogFormat.class.getDeclaredMethod("toCaptureGroup", String.class, char.class);
 		toCaptureGroup.setAccessible(true);
-		LogFormat logFormat = new LogFormat(LOTSERVER_LOG_FORMAT);
+		LogFormat logFormat = new LogFormat(TestConstants.DEFAULT_LOG_FORMAT_STR);
 		
 		assertThat((String)toCaptureGroup.invoke(logFormat, normalLogEle, ' '), is("(?<remoteAddr>[^\\\\s]+)"));
 		assertThat((String)toCaptureGroup.invoke(logFormat, normalLogEle, ']'), is("(?<remoteAddr>.+)"));

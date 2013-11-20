@@ -8,9 +8,8 @@ import java.util.regex.Pattern;
 import org.junit.Test;
 
 import com.zhengshuli.analysislog.FileFixture;
+import com.zhengshuli.analysislog.TestConstants;
 import com.zhengshuli.analysislog.domain.LogLine;
-import com.zhengshuli.analysislog.parser.LogFormat;
-import com.zhengshuli.analysislog.parser.LogLineParser;
 
 public class LogLineParserTest {
 	@Test
@@ -29,7 +28,7 @@ public class LogLineParserTest {
 	
 	@Test
 	public void should_get_logline(){
-		LogFormat logFormat = new LogFormat(LogFormatTest.LOTSERVER_LOG_FORMAT);
+		LogFormat logFormat = new LogFormat(TestConstants.DEFAULT_LOG_FORMAT_STR);
 		LogLineParser parser = new LogLineParser(logFormat);;
 		String line = FileFixture.loadFirstLine("/normalline.txt");
 		LogLine logLine = parser .parseToLogLine(line);

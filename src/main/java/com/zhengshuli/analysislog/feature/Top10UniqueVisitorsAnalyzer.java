@@ -7,18 +7,18 @@ import com.google.common.collect.Multisets;
 import com.google.common.collect.TreeMultiset;
 import com.zhengshuli.analysislog.domain.LogLine;
 import com.zhengshuli.analysislog.feature.dto.Top10UniqueVisitorsDTO;
-import com.zhengshuli.analysislog.parser.LogLineAnalyzer;
+import com.zhengshuli.analysislog.parser.ILogLineAnalyzer;
 
-public class Top10UniqueVistorsAnalyzer implements LogLineAnalyzer{
+public class Top10UniqueVisitorsAnalyzer implements ILogLineAnalyzer{
     private Multiset<String> uniqueVistors = TreeMultiset.create();
     
     @Override
-    public void process(LogLine logLine) {
+    public void analyze(LogLine logLine) {
         uniqueVistors.add(logLine.getRemoteAddr());
     }
     
     @Override
-    public Top10UniqueVisitorsDTO result() {
+    public Top10UniqueVisitorsDTO analyzeResult() {
         uniqueVistors = Multisets.copyHighestCountFirst(uniqueVistors);
         Iterator<String> visitors = uniqueVistors.elementSet().iterator();
         int i = 0;
