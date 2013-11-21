@@ -31,7 +31,7 @@ public class LogLineParserTest {
 		LogFormat logFormat = new LogFormat(TestConstants.DEFAULT_LOG_FORMAT_STR);
 		LogLineParser parser = new LogLineParser(logFormat);;
 		String line = FileFixture.loadFirstLine("/normalline.txt");
-		LogLine logLine = parser .parseToLogLine(line);
+		LogLine logLine = parser .parse(line);
 		assertEquals("125.88.122.103", logLine.getRemoteAddr());
 		assertEquals("-", logLine.getRemoteUser());
 		assertEquals("08/Nov/2013:00:00:01 +0800", logLine.getTimeLocal());

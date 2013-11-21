@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import com.zhengshuli.analysislog.FileFixture;
 import com.zhengshuli.analysislog.TestConstants;
-import com.zhengshuli.analysislog.feature.dto.Top10UniqueVisitorsDTO.Top10UniqueVisitor;
+import com.zhengshuli.analysislog.feature.view.Top10UniqueVisitorsView.Top10UniqueVisitor;
 import com.zhengshuli.analysislog.parser.LogLineParser;
 
 public class Top10UniqueVisitorAnalyzerTest {
@@ -21,7 +21,7 @@ public class Top10UniqueVisitorAnalyzerTest {
         for (String line : lines){
             logLineParser.processLine(line);
         }
-        List<Top10UniqueVisitor> visitors = analyzer.analyzeResult().getTop10Visitors();
+        List<Top10UniqueVisitor> visitors = analyzer.toView().result();
         
         assertEquals(4, visitors.size());
         

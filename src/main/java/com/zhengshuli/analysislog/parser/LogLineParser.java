@@ -11,8 +11,9 @@ import org.apache.commons.beanutils.PropertyUtils;
 import com.google.common.io.LineProcessor;
 import com.zhengshuli.analysislog.domain.LogLine;
 import com.zhengshuli.analysislog.feature.Top10UniqueVisitorsAnalyzer;
+import com.zhengshuli.analysislog.reporter.IView;
 
-public class LogLineParser implements LineProcessor{
+public class LogLineParser implements LineProcessor<List<IView>>{
 	private Pattern parsePattern;
 	private LogFormat logFormat;
 	
@@ -30,26 +31,16 @@ public class LogLineParser implements LineProcessor{
 	    }
     }
 	
-	public LogLine parseToLogLine(String line){
+	public LogLine parse(String line){
 		Matcher matcher = parsePattern.matcher(line);
 		if (matcher.find()) {
 			LogLine logLine = new LogLine();
-			List<String> logElements = logFormat.getLogElements();
-			for(String logElement : logElements) {
-			    String value = matcher.group(logElement);
-			    try {
-                    PropertyUtils.setProperty(logLine, logElement, value);
-                }
-                catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-                catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                }
-                catch (NoSuchMethodException e) {
-                    // TODO fix this 
-                }
-			}
+			logLine.setRemoteAddr(matcher.group("remoteAddr"));
+			logLine.setRemoteUser(matcher.group("remoteUser"));
+			logLine.setRequest(matcher.group("request"));
+			logLine.setTimeLocal(matcher.group("timeLocal"));
+			logLine.setRequestBody(matcher.group("requestBody"));
+			logLine.setRequestTime(matcher.group("requestTime"));
 			return logLine;	
 		}
 		return null;
@@ -57,7 +48,7 @@ public class LogLineParser implements LineProcessor{
 
     @Override
     public boolean processLine(String line) {
-        LogLine logLine = parseToLogLine(line);
+        LogLine logLine = parse(line);
         for(ILogLineAnalyzer analyzer: logLineAnalyzers) {
             analyzer.analyze(logLine);
         }
@@ -65,11 +56,15 @@ public class LogLineParser implements LineProcessor{
     }
 
     @Override
-    public Object getResult() {
-        return null;
+    public List<IView> getResult() {
+        List<IView> views = new ArrayList<IView>();
+        for(ILogLineAnalyzer analyzer: logLineAnalyzers) {
+            views.add(analyzer.toView());
+        }
+        return views;
     }
     
-    private void setLogFormat(LogFormat logFormat){
+    private void setLogFormat(LogFormat logFormat) {
         this.logFormat = logFormat;
         parsePattern = Pattern.compile(logFormat.getRegex());
     }
