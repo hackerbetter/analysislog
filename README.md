@@ -12,7 +12,7 @@ Nginx Log Analyzer
 
 ### Feature
 
-* top 10 unique visitors.
+* top 10 unique visitors.		DONE
 
 * top 100 request that spend most time.
 

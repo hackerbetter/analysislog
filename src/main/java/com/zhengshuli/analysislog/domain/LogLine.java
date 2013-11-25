@@ -1,17 +1,25 @@
 package com.zhengshuli.analysislog.domain;
 
+import java.util.Locale;
+
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 public class LogLine {
+    private static final DateTimeFormatter REQUEST_TIME_FORMATTER = DateTimeFormat.forPattern("dd/MMM/yyyy:HH:mm:ss Z").withLocale(Locale.ENGLISH);
+    
 	private String remoteAddr;
 	private String remoteUser;
 	private String timeLocal;
 	private String request;
 	private String requestBody;
-	private String requestTime;
-    public String getRequestTime() {
+	private DateTime requestTime;
+    public DateTime getRequestTime() {
         return requestTime;
     }
     public void setRequestTime(String requestTime) {
-        this.requestTime = requestTime;
+        this.requestTime = REQUEST_TIME_FORMATTER.parseDateTime(requestTime);;
     }
     public String getRemoteAddr() {
         return remoteAddr;
