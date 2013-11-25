@@ -34,7 +34,7 @@ public class LogLineParserTest {
 		LogLine logLine = parser .parse(line);
 		assertEquals("125.88.122.103", logLine.getRemoteAddr());
 		assertEquals("-", logLine.getRemoteUser());
-		assertEquals(0, logLine.getTimeLocal().getHourOfDay());
+		assertEquals(2013, logLine.getTimeLocal().getYear());
 		assertEquals("POST /lotserver/RuyicaiServlet HTTP/1.1", logLine.getRequest());
 		assertEquals("6ddaf4c", logLine.getRequestBody());
 	}
