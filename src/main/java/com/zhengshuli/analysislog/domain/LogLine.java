@@ -11,15 +11,16 @@ public class LogLine {
     
 	private String remoteAddr;
 	private String remoteUser;
-	private String timeLocal;
+	private DateTime timeLocal;
 	private String request;
 	private String requestBody;
-	private DateTime requestTime;
-    public DateTime getRequestTime() {
+	private String requestTime;
+
+    public String getRequestTime() {
         return requestTime;
     }
     public void setRequestTime(String requestTime) {
-        this.requestTime = REQUEST_TIME_FORMATTER.parseDateTime(requestTime);;
+        this.requestTime = requestTime;
     }
     public String getRemoteAddr() {
         return remoteAddr;
@@ -33,11 +34,11 @@ public class LogLine {
     public void setRemoteUser(String remoteUser) {
         this.remoteUser = remoteUser;
     }
-    public String getTimeLocal() {
+    public DateTime getTimeLocal() {
         return timeLocal;
     }
     public void setTimeLocal(String timeLocal) {
-        this.timeLocal = timeLocal;
+        this.timeLocal = REQUEST_TIME_FORMATTER.parseDateTime(timeLocal);
     }
     public String getRequest() {
         return request;
