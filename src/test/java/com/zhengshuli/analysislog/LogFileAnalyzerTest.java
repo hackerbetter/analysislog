@@ -10,6 +10,7 @@ public class LogFileAnalyzerTest {
     @After
     public void tearDown(){
         FileFixture.deleteFile("top10_unique_visitors.csv");
+        FileFixture.deleteFile("request_spend_time_avg.csv");
     }
     
     @Test

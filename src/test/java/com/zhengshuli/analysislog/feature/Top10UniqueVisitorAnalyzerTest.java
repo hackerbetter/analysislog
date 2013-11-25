@@ -12,9 +12,10 @@ import com.zhengshuli.analysislog.feature.view.Top10UniqueVisitorsView.Top10Uniq
 import com.zhengshuli.analysislog.parser.LogLineParser;
 
 public class Top10UniqueVisitorAnalyzerTest {
+    private Top10UniqueVisitorsAnalyzer analyzer = new Top10UniqueVisitorsAnalyzer();
+    
     @Test
     public void should_get_correct_top10(){
-        Top10UniqueVisitorsAnalyzer analyzer = new Top10UniqueVisitorsAnalyzer();
         LogLineParser logLineParser = new LogLineParser(TestConstants.DEFAULT_LOG_FORMAT, analyzer);
         
         List<String> lines = FileFixture.loadLines("/top10.txt");

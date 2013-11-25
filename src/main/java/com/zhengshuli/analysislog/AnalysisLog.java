@@ -52,7 +52,7 @@ public class AnalysisLog {
 					String time = items[3];
 					String hour = Lists.newArrayList(Splitter.on(":").split(time)).get(1);
 					if(!hour.equals(currentHour) && !"".equals(currentHour)){
-						printer.println("hour:"+currentHour+",avg mills:"+totalResponseMills / lineCount );
+						printer.println("hour:"+currentHour+",avg mills:"+ totalResponseMills / lineCount + ",lineCount:" + lineCount );
 						lineCount = 0;
 						totalResponseMills = 0;
 					}

@@ -1,15 +1,14 @@
 package com.zhengshuli.analysislog.parser;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.beanutils.PropertyUtils;
 
 import com.google.common.io.LineProcessor;
 import com.zhengshuli.analysislog.domain.LogLine;
+import com.zhengshuli.analysislog.feature.RequestTimeAnalyzer;
 import com.zhengshuli.analysislog.feature.Top10UniqueVisitorsAnalyzer;
 import com.zhengshuli.analysislog.reporter.IView;
 
@@ -71,5 +70,6 @@ public class LogLineParser implements LineProcessor<List<IView>>{
     
     private void registerDefaultLogLineAnalyzer(){
         logLineAnalyzers.add(new Top10UniqueVisitorsAnalyzer());
+        logLineAnalyzers.add(new RequestTimeAnalyzer());
     }
 }

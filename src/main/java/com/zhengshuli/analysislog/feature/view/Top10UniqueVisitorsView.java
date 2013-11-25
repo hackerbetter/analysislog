@@ -33,7 +33,7 @@ public class Top10UniqueVisitorsView implements ICSVView<Top10UniqueVisitorsView
         return new String[]{visitor.ip, visitor.visitCount.toString()};
     }
     
-    public class Top10UniqueVisitor{
+    public class Top10UniqueVisitor {
         private String ip;
         private Integer visitCount;
         
